@@ -4,7 +4,7 @@
   "description": "Realtime application for chating",
   "main": "server.js",
   "scripts": {
-    "start": "npm server",
+    "start": "node server",
     "dev": "nodemon server"
   },
   "author": "Yogendar Singh",
