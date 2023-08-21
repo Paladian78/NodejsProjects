@@ -43,7 +43,7 @@ export const register = asyncHandler(async (req, res) => {
 
     res.json({
       success: true,
-      message: "User registered",
+      message: "User registered, Now you can login with the credentials",
     });
   } catch (error) {
     res.send(error).status(500);
