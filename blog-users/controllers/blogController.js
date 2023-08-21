@@ -31,16 +31,16 @@ export const fetchBlog = asyncHandler(async (req, res) => {
 export const updateBlog = asyncHandler(async (req, res) => {
   try {
     const { blogId, title, content } = req.body;
-    const blog = await Blog.findOne({ _id: blogId });
+    const blog = await Blog.findOne({ _id: blogId }).populate("author");
 
-    if (!blog || !blogId) {
+    if (!blog) {
       return res.json({
         success: false,
         message: "Couldn't find blog",
       });
     }
 
-    if (blog.auther._id !== req.user._id) {
+    if (String(req.user._id) !== String(blog.author._id)) {
       return res.json({
         success: false,
         message: "You are not authenticated to update this blog",
@@ -52,7 +52,7 @@ export const updateBlog = asyncHandler(async (req, res) => {
     blog.updatedAt = Date.now();
 
     await blog.save();
-    res.send({
+    res.json({
       success: true,
       message: "Blog updated successfully",
     });
