@@ -22,7 +22,7 @@ app.use("/api/blog", blogRoute);
 app.use("/api/admin", adminRoute);
 
 app.get("/", (req, res) => {
-  res.send("Nice working");
+  res.send("The Backend server for blog-users is working");
 });
 
 // To handle errors
