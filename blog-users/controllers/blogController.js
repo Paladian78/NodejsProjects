@@ -40,6 +40,13 @@ export const updateBlog = asyncHandler(async (req, res) => {
       });
     }
 
+    if (blog.auther._id !== req.user._id) {
+      return res.json({
+        success: false,
+        message: "You are not authenticated to update this blog",
+      });
+    }
+
     blog.title = title;
     blog.content = content;
     blog.updatedAt = Date.now();
